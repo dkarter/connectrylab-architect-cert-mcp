@@ -136,6 +136,40 @@ Restart Claude Desktop. You'll see the MCP tools icon appear in the chat input.
 </details>
 
 <details>
+<summary><b>Claude Desktop</b> — Docker (no local npm install)</summary>
+
+Pull the image:
+
+```bash
+docker pull ghcr.io/dkarter/connectrylab-architect-cert-mcp:latest
+```
+
+Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "connectry-architect": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "-v", "$HOME/.local/share/connectry-architect:/root/.connectry-architect",
+        "ghcr.io/dkarter/connectrylab-architect-cert-mcp:latest"
+      ]
+    }
+  }
+}
+```
+
+This runs the server in an isolated container with no npm dependencies on your machine. Your progress is persisted via the volume mount at `~/.local/share/connectry-architect`.
+
+Restart Claude Desktop. You'll see the MCP tools icon appear in the chat input.
+
+</details>
+
+<details>
 <summary><b>Claude Desktop</b> — Windows</summary>
 
 Add to `%APPDATA%\Claude\claude_desktop_config.json`:
@@ -754,6 +788,7 @@ This server enforces honest grading at the protocol level — not just in prompt
 
 - Progress is stored locally at `~/.connectry-architect/progress.db` (SQLite, WAL mode)
 - Your user config lives at `~/.connectry-architect/config.json` (auto-created on first run)
+- When running via Docker, both files are stored in the mounted volume (e.g. `~/.local/share/connectry-architect/`)
 - No cloud, no accounts, no telemetry — everything stays on your machine
 
 <br />
