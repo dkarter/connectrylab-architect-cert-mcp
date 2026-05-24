@@ -53,6 +53,7 @@
 Architect Cert is a free, open-source [MCP](https://modelcontextprotocol.io/) server that turns Claude into your personal certification tutor for the **Claude Certified Architect — Foundations** exam. No courses, no slides, no video lectures — just ask Claude and study.
 
 It ships with:
+
 - **390 scenario-based questions** across all 5 exam domains and 30 task statements
 - **Interactive clickable UI** — answer questions with A/B/C/D buttons, select follow-ups, pick domains with checkboxes — all inside Claude
 - **Lessons-first assessment** — learn each domain's concepts before being tested on them
@@ -127,6 +128,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 ```
 
 > **Tip:** If you use `nvm`, you may need to specify the full path to the binary:
+>
 > ```json
 > "command": "/Users/yourname/.nvm/versions/node/v22.20.0/bin/connectry-architect-mcp"
 > ```
@@ -155,7 +157,8 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "run",
         "--rm",
         "-i",
-        "-v", "$HOME/.local/share/connectry-architect:/root/.connectry-architect",
+        "-v",
+        "/Users/<YOUR_USERNAME>/.local/share/connectry-architect:/root/.connectry-architect",
         "ghcr.io/dkarter/connectrylab-architect-cert-mcp:latest"
       ]
     }
@@ -205,20 +208,20 @@ The server exposes 18 tools, 8 prompts, and 3 resource types.
 
 Restart your MCP client and start chatting:
 
-| What you want | What to ask Claude |
-|---------------|-------------------|
-| Start from scratch | *"Start an assessment to figure out where I stand"* |
-| Practice questions | *"Give me a practice question"* |
-| Focus on a domain | *"Give me a question about agentic architecture"* |
-| Learn a concept first | *"Teach me about task 2.3 — tool provisioning"* |
-| Build your own capstone | *"I want to start a guided capstone build"* |
-| Take a practice exam | *"I want to take a practice exam"* |
-| Check your progress | *"Show my study progress"* |
-| Show the dashboard | *"Show my dashboard"* |
-| Get a study plan | *"What should I study next?"* |
-| Explore a reference project | *"Show me a reference project for domain 1"* |
-| Generate PDF handouts | Run `npm run generate:pdfs` in the project directory |
-| Reset and start over | *"Reset my progress"* |
+| What you want               | What to ask Claude                                   |
+| --------------------------- | ---------------------------------------------------- |
+| Start from scratch          | _"Start an assessment to figure out where I stand"_  |
+| Practice questions          | _"Give me a practice question"_                      |
+| Focus on a domain           | _"Give me a question about agentic architecture"_    |
+| Learn a concept first       | _"Teach me about task 2.3 — tool provisioning"_      |
+| Build your own capstone     | _"I want to start a guided capstone build"_          |
+| Take a practice exam        | _"I want to take a practice exam"_                   |
+| Check your progress         | _"Show my study progress"_                           |
+| Show the dashboard          | _"Show my dashboard"_                                |
+| Get a study plan            | _"What should I study next?"_                        |
+| Explore a reference project | _"Show me a reference project for domain 1"_         |
+| Generate PDF handouts       | Run `npm run generate:pdfs` in the project directory |
+| Reset and start over        | _"Reset my progress"_                                |
 
 <br />
 
@@ -259,6 +262,7 @@ Every question presents **clickable A/B/C/D buttons** directly in Claude. You ta
 After every answer, clickable follow-up buttons appear:
 
 **After a wrong answer:**
+
 - Got it, next question
 - Explain with a code example
 - Show me the concept lesson
@@ -266,6 +270,7 @@ After every answer, clickable follow-up buttons appear:
 - Show me in the reference project
 
 **After a correct answer:**
+
 - Next question
 - Explain why the others are wrong
 
@@ -289,9 +294,10 @@ Start with a **15-question diagnostic** (3 per domain) that determines your lear
 
 ### Lessons-First Flow
 
-When the assessment reaches a **new domain** for the first time, it pauses to show you the **concept handout** before asking questions. This means you learn the key ideas, see code examples, and understand common mistakes *before* being tested — no guessing blindly.
+When the assessment reaches a **new domain** for the first time, it pauses to show you the **concept handout** before asking questions. This means you learn the key ideas, see code examples, and understand common mistakes _before_ being tested — no guessing blindly.
 
 The flow for each domain:
+
 1. Concept handout is shown (one-time per domain)
 2. 3 questions presented one at a time (easy, medium, hard)
 3. Each answer graded immediately with explanation
@@ -301,10 +307,10 @@ The flow for each domain:
 
 Based on your overall accuracy:
 
-| Score | Path | Description |
-|-------|------|-------------|
-| **< 60%** | Beginner-Friendly | Starts with fundamentals, builds up gradually. Focuses on easy and medium questions first. |
-| **>= 60%** | Exam-Weighted | Focuses on high-weight domains first (D1 at 27%, D3 & D4 at 20% each). Targets weak areas aggressively. |
+| Score      | Path              | Description                                                                                             |
+| ---------- | ----------------- | ------------------------------------------------------------------------------------------------------- |
+| **< 60%**  | Beginner-Friendly | Starts with fundamentals, builds up gradually. Focuses on easy and medium questions first.              |
+| **>= 60%** | Exam-Weighted     | Focuses on high-weight domains first (D1 at 27%, D3 & D4 at 20% each). Targets weak areas aggressively. |
 
 ### Progress Tracking
 
@@ -345,6 +351,7 @@ npm run generate:pdfs
 ```
 
 This creates 30 PDFs in `generated/handouts/` with:
+
 - Architect Cert logo and domain label in the header
 - Clean formatting with syntax-highlighted code blocks
 - "Connectry LABS — Claude Certified Architect Exam Prep — Free & Open Source" footer
@@ -377,13 +384,13 @@ After every answer, you get clickable follow-up options. Each option dives deepe
 
 Each of the 30 task statements has an independent mastery level:
 
-| Level | Criteria | What it means |
-|-------|----------|---------------|
-| **Unassessed** | No attempts yet | You haven't seen questions on this topic |
-| **Weak** | < 50% accuracy | Needs significant study — questions resurface frequently |
-| **Developing** | 50-69% accuracy | Making progress — keep practicing |
-| **Strong** | 70-89% accuracy | Good understanding — review intervals are longer |
-| **Mastered** | >= 90% accuracy, 5+ attempts, 3+ consecutive correct | Exam-ready — rare reviews |
+| Level          | Criteria                                             | What it means                                            |
+| -------------- | ---------------------------------------------------- | -------------------------------------------------------- |
+| **Unassessed** | No attempts yet                                      | You haven't seen questions on this topic                 |
+| **Weak**       | < 50% accuracy                                       | Needs significant study — questions resurface frequently |
+| **Developing** | 50-69% accuracy                                      | Making progress — keep practicing                        |
+| **Strong**     | 70-89% accuracy                                      | Good understanding — review intervals are longer         |
+| **Mastered**   | >= 90% accuracy, 5+ attempts, 3+ consecutive correct | Exam-ready — rare reviews                                |
 
 ### Spaced Repetition (SM-2)
 
@@ -436,13 +443,13 @@ A **visual 18-step checklist** tracks your progress in real time.
 
 The 18 steps build incrementally:
 
-| Steps | What you build | Task Statements |
-|-------|---------------|-----------------|
-| 1-2 | Project config (CLAUDE.md, package.json) | 3.1-3.4 |
-| 3-5 | MCP server, tools, error handling | 2.1-2.5 |
-| 6-10 | Agentic loop, subagents, hooks, workflows, sessions | 1.1-1.7 |
-| 11-13 | Prompts: system, extraction, batch processing | 4.1-4.6 |
-| 14-18 | Context: preservation, triggers, propagation, scratchpad, confidence | 5.1-5.6 |
+| Steps | What you build                                                       | Task Statements |
+| ----- | -------------------------------------------------------------------- | --------------- |
+| 1-2   | Project config (CLAUDE.md, package.json)                             | 3.1-3.4         |
+| 3-5   | MCP server, tools, error handling                                    | 2.1-2.5         |
+| 6-10  | Agentic loop, subagents, hooks, workflows, sessions                  | 1.1-1.7         |
+| 11-13 | Prompts: system, extraction, batch processing                        | 4.1-4.6         |
+| 14-18 | Context: preservation, triggers, propagation, scratchpad, confidence | 5.1-5.6         |
 
 Every quiz answer feeds into the same spaced repetition and mastery tracking as regular practice.
 
@@ -452,11 +459,11 @@ After step 18, you get a complete coverage map: all 30 task statements, where ea
 
 ### Capstone Build Tools
 
-| Tool | What it does |
-|------|-------------|
-| `start_capstone_build` | See the 30 criteria, describe your theme, refine until coverage is complete |
-| `capstone_build_step` | Drive the build: confirm, quiz, build, next, status, or abandon |
-| `capstone_build_status` | Check your progress — current step, criteria coverage, quiz performance |
+| Tool                    | What it does                                                                |
+| ----------------------- | --------------------------------------------------------------------------- |
+| `start_capstone_build`  | See the 30 criteria, describe your theme, refine until coverage is complete |
+| `capstone_build_step`   | Drive the build: confirm, quiz, build, next, status, or abandon             |
+| `capstone_build_status` | Check your progress — current step, criteria coverage, quiz performance     |
 
 ### How It Connects to Everything Else
 
@@ -471,18 +478,18 @@ After step 18, you get a complete coverage map: all 30 task statements, where ea
 
 Full 60-question exams that simulate the real certification:
 
-| Detail | Value |
-|--------|-------|
-| Total questions | 60 |
-| D1: Agentic Architecture | 16 questions (27%) |
-| D2: Tool Design & MCP | 11 questions (18%) |
-| D3: Claude Code Config | 12 questions (20%) |
-| D4: Prompt Engineering | 12 questions (20%) |
-| D5: Context & Reliability | 9 questions (15%) |
-| Scoring | 0-1000, passing at 720 |
-| Question selection | Fresh set each time — avoids repeating your most recent attempt |
-| UI | Clickable A/B/C/D buttons with code previews |
-| Progress | Visual 60-item checklist updated after each answer |
+| Detail                    | Value                                                           |
+| ------------------------- | --------------------------------------------------------------- |
+| Total questions           | 60                                                              |
+| D1: Agentic Architecture  | 16 questions (27%)                                              |
+| D2: Tool Design & MCP     | 11 questions (18%)                                              |
+| D3: Claude Code Config    | 12 questions (20%)                                              |
+| D4: Prompt Engineering    | 12 questions (20%)                                              |
+| D5: Context & Reliability | 9 questions (15%)                                               |
+| Scoring                   | 0-1000, passing at 720                                          |
+| Question selection        | Fresh set each time — avoids repeating your most recent attempt |
+| UI                        | Clickable A/B/C/D buttons with code previews                    |
+| Progress                  | Visual 60-item checklist updated after each answer              |
 
 All attempts are saved with per-domain score breakdowns and improvement trends.
 
@@ -521,14 +528,14 @@ For MCP clients that don't support Claude Preview, the dashboard tool also retur
 
 Architect Cert includes **6 complete reference projects** — runnable TypeScript codebases that demonstrate certification concepts in real code. Every file has a header comment mapping it to specific task statements.
 
-| Project | Focus | Files | What You'll See |
-|---------|-------|-------|-----------------|
-| **Capstone** | All 5 domains | 24 | Full multi-agent support system with MCP server, coordinator, subagents, prompt engineering, context management, and hooks |
-| **D1 — Agentic Loop** | Domain 1 | 10 | Multi-agent research coordinator with agentic loops, subagent spawning, hooks, session management, and task decomposition |
-| **D2 — Tool Design** | Domain 2 | 12 | MCP server with split tools, structured errors, agent-scoped tool distribution, resources, and built-in tool patterns |
-| **D3 — Claude Code Config** | Domain 3 | 14 | Complete config reference: CLAUDE.md hierarchy, slash commands, path rules, CI/CD workflows — not runnable code, but a real config layout |
-| **D4 — Prompt Engineering** | Domain 4 | 11 | Data extraction pipeline with explicit criteria, few-shot, structured output, validation-retry, batch processing, and multi-pass review |
-| **D5 — Context Manager** | Domain 5 | 14 | Long-session patterns: context preservation, scratchpad, subagent delegation, escalation, error propagation, confidence calibration, provenance |
+| Project                     | Focus         | Files | What You'll See                                                                                                                                 |
+| --------------------------- | ------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Capstone**                | All 5 domains | 24    | Full multi-agent support system with MCP server, coordinator, subagents, prompt engineering, context management, and hooks                      |
+| **D1 — Agentic Loop**       | Domain 1      | 10    | Multi-agent research coordinator with agentic loops, subagent spawning, hooks, session management, and task decomposition                       |
+| **D2 — Tool Design**        | Domain 2      | 12    | MCP server with split tools, structured errors, agent-scoped tool distribution, resources, and built-in tool patterns                           |
+| **D3 — Claude Code Config** | Domain 3      | 14    | Complete config reference: CLAUDE.md hierarchy, slash commands, path rules, CI/CD workflows — not runnable code, but a real config layout       |
+| **D4 — Prompt Engineering** | Domain 4      | 11    | Data extraction pipeline with explicit criteria, few-shot, structured output, validation-retry, batch processing, and multi-pass review         |
+| **D5 — Context Manager**    | Domain 5      | 14    | Long-session patterns: context preservation, scratchpad, subagent delegation, escalation, error propagation, confidence calibration, provenance |
 
 ### How to Access
 
@@ -567,84 +574,84 @@ The study plan creates a **visual checklist** so you can track your progress thr
 
 The Claude Certified Architect — Foundations exam covers 5 domains:
 
-| # | Domain | Weight | Tasks | Questions |
-|---|--------|--------|-------|-----------|
-| 1 | Agentic Architecture & Orchestration | 27% | 7 | 91 |
-| 2 | Tool Design & MCP Integration | 18% | 5 | 65 |
-| 3 | Claude Code Configuration & Workflows | 20% | 6 | 78 |
-| 4 | Prompt Engineering & Structured Output | 20% | 6 | 78 |
-| 5 | Context Management & Reliability | 15% | 6 | 78 |
-| | **Total** | **100%** | **30** | **390** |
+| #   | Domain                                 | Weight   | Tasks  | Questions |
+| --- | -------------------------------------- | -------- | ------ | --------- |
+| 1   | Agentic Architecture & Orchestration   | 27%      | 7      | 91        |
+| 2   | Tool Design & MCP Integration          | 18%      | 5      | 65        |
+| 3   | Claude Code Configuration & Workflows  | 20%      | 6      | 78        |
+| 4   | Prompt Engineering & Structured Output | 20%      | 6      | 78        |
+| 5   | Context Management & Reliability       | 15%      | 6      | 78        |
+|     | **Total**                              | **100%** | **30** | **390**   |
 
 ### 30 Task Statements
 
 <details>
 <summary><b>Domain 1 — Agentic Architecture & Orchestration</b> (7 tasks, 91 questions)</summary>
 
-| Task | Description |
-|------|-------------|
-| 1.1 | Design and implement agentic loops for autonomous task execution |
-| 1.2 | Orchestrate multi-agent systems with coordinator-subagent patterns |
-| 1.3 | Configure subagent invocation, context passing, and spawning |
-| 1.4 | Implement multi-step workflows with enforcement and handoff patterns |
-| 1.5 | Apply Agent SDK hooks for tool call interception and data normalization |
-| 1.6 | Design task decomposition strategies for complex workflows |
-| 1.7 | Manage session state, resumption, and forking |
+| Task | Description                                                             |
+| ---- | ----------------------------------------------------------------------- |
+| 1.1  | Design and implement agentic loops for autonomous task execution        |
+| 1.2  | Orchestrate multi-agent systems with coordinator-subagent patterns      |
+| 1.3  | Configure subagent invocation, context passing, and spawning            |
+| 1.4  | Implement multi-step workflows with enforcement and handoff patterns    |
+| 1.5  | Apply Agent SDK hooks for tool call interception and data normalization |
+| 1.6  | Design task decomposition strategies for complex workflows              |
+| 1.7  | Manage session state, resumption, and forking                           |
 
 </details>
 
 <details>
 <summary><b>Domain 2 — Tool Design & MCP Integration</b> (5 tasks, 65 questions)</summary>
 
-| Task | Description |
-|------|-------------|
-| 2.1 | Design effective tool interfaces with clear descriptions and boundaries |
-| 2.2 | Implement structured error responses for MCP tools |
-| 2.3 | Distribute tools appropriately across agents and configure tool choice |
-| 2.4 | Integrate MCP servers into Claude Code and agent workflows |
-| 2.5 | Select and apply built-in tools effectively |
+| Task | Description                                                             |
+| ---- | ----------------------------------------------------------------------- |
+| 2.1  | Design effective tool interfaces with clear descriptions and boundaries |
+| 2.2  | Implement structured error responses for MCP tools                      |
+| 2.3  | Distribute tools appropriately across agents and configure tool choice  |
+| 2.4  | Integrate MCP servers into Claude Code and agent workflows              |
+| 2.5  | Select and apply built-in tools effectively                             |
 
 </details>
 
 <details>
 <summary><b>Domain 3 — Claude Code Configuration & Workflows</b> (6 tasks, 78 questions)</summary>
 
-| Task | Description |
-|------|-------------|
-| 3.1 | Configure CLAUDE.md files with appropriate hierarchy and scoping |
-| 3.2 | Create and configure custom slash commands and skills |
-| 3.3 | Apply path-specific rules for conditional convention loading |
-| 3.4 | Determine when to use plan mode vs direct execution |
-| 3.5 | Apply iterative refinement techniques for progressive improvement |
-| 3.6 | Integrate Claude Code into CI/CD pipelines |
+| Task | Description                                                       |
+| ---- | ----------------------------------------------------------------- |
+| 3.1  | Configure CLAUDE.md files with appropriate hierarchy and scoping  |
+| 3.2  | Create and configure custom slash commands and skills             |
+| 3.3  | Apply path-specific rules for conditional convention loading      |
+| 3.4  | Determine when to use plan mode vs direct execution               |
+| 3.5  | Apply iterative refinement techniques for progressive improvement |
+| 3.6  | Integrate Claude Code into CI/CD pipelines                        |
 
 </details>
 
 <details>
 <summary><b>Domain 4 — Prompt Engineering & Structured Output</b> (6 tasks, 78 questions)</summary>
 
-| Task | Description |
-|------|-------------|
-| 4.1 | Design prompts with explicit criteria to improve precision |
-| 4.2 | Apply few-shot prompting to improve output consistency |
-| 4.3 | Enforce structured output using tool use and JSON schemas |
-| 4.4 | Implement validation, retry, and feedback loops |
-| 4.5 | Design efficient batch processing strategies |
-| 4.6 | Design multi-instance and multi-pass review architectures |
+| Task | Description                                                |
+| ---- | ---------------------------------------------------------- |
+| 4.1  | Design prompts with explicit criteria to improve precision |
+| 4.2  | Apply few-shot prompting to improve output consistency     |
+| 4.3  | Enforce structured output using tool use and JSON schemas  |
+| 4.4  | Implement validation, retry, and feedback loops            |
+| 4.5  | Design efficient batch processing strategies               |
+| 4.6  | Design multi-instance and multi-pass review architectures  |
 
 </details>
 
 <details>
 <summary><b>Domain 5 — Context Management & Reliability</b> (6 tasks, 78 questions)</summary>
 
-| Task | Description |
-|------|-------------|
-| 5.1 | Manage conversation context to preserve critical information |
-| 5.2 | Design effective escalation and ambiguity resolution patterns |
-| 5.3 | Implement error propagation strategies across multi-agent systems |
-| 5.4 | Manage context effectively in large codebase exploration |
-| 5.5 | Design human review workflows and confidence calibration |
-| 5.6 | Preserve information provenance and handle uncertainty in synthesis |
+| Task | Description                                                         |
+| ---- | ------------------------------------------------------------------- |
+| 5.1  | Manage conversation context to preserve critical information        |
+| 5.2  | Design effective escalation and ambiguity resolution patterns       |
+| 5.3  | Implement error propagation strategies across multi-agent systems   |
+| 5.4  | Manage context effectively in large codebase exploration            |
+| 5.5  | Design human review workflows and confidence calibration            |
+| 5.6  | Preserve information provenance and handle uncertainty in synthesis |
 
 </details>
 
@@ -656,46 +663,46 @@ Architect Cert provides **18 MCP tools** that Claude uses to deliver the study e
 
 ### Study Flow
 
-| Tool | Description |
-|------|-------------|
-| `start_assessment` | Begin with 15 diagnostic questions (lessons-first, one at a time) to determine your learning path |
+| Tool                    | Description                                                                                         |
+| ----------------------- | --------------------------------------------------------------------------------------------------- |
+| `start_assessment`      | Begin with 15 diagnostic questions (lessons-first, one at a time) to determine your learning path   |
 | `get_practice_question` | Get the next adaptive question with clickable A/B/C/D buttons (reviews > weak areas > new material) |
-| `submit_answer` | Grade your answer deterministically — presents interactive follow-up options |
-| `follow_up` | Handle post-answer actions: code examples, concept lessons, handouts, reference projects |
-| `get_section_details` | Deep dive into a specific task statement with full concept handout |
+| `submit_answer`         | Grade your answer deterministically — presents interactive follow-up options                        |
+| `follow_up`             | Handle post-answer actions: code examples, concept lessons, handouts, reference projects            |
+| `get_section_details`   | Deep dive into a specific task statement with full concept handout                                  |
 
 ### Progress & Planning
 
-| Tool | Description |
-|------|-------------|
-| `get_progress` | View overall study progress with mastery percentages per domain |
+| Tool             | Description                                                             |
+| ---------------- | ----------------------------------------------------------------------- |
+| `get_progress`   | View overall study progress with mastery percentages per domain         |
 | `get_curriculum` | Browse all 5 domains and 30 task statements with current mastery levels |
-| `get_weak_areas` | Identify topics that need the most work, ranked by weakness |
-| `get_study_plan` | Get personalized recommendations with multi-select domain focus |
-| `get_dashboard` | Open the visual progress dashboard in Claude Preview |
+| `get_weak_areas` | Identify topics that need the most work, ranked by weakness             |
+| `get_study_plan` | Get personalized recommendations with multi-select domain focus         |
+| `get_dashboard`  | Open the visual progress dashboard in Claude Preview                    |
 
 ### Practice Exams
 
-| Tool | Description |
-|------|-------------|
-| `start_practice_exam` | Take a full 60-question practice exam simulating the real certification |
-| `submit_exam_answer` | Submit and grade answers during a practice exam |
-| `get_exam_history` | View all past exam attempts with scores, trends, and per-domain comparison |
+| Tool                  | Description                                                                |
+| --------------------- | -------------------------------------------------------------------------- |
+| `start_practice_exam` | Take a full 60-question practice exam simulating the real certification    |
+| `submit_exam_answer`  | Submit and grade answers during a practice exam                            |
+| `get_exam_history`    | View all past exam attempts with scores, trends, and per-domain comparison |
 
 ### Capstone Build
 
-| Tool | Description |
-|------|-------------|
-| `start_capstone_build` | Start a guided capstone build — shape your project and validate criteria coverage |
-| `capstone_build_step` | Drive the capstone build: confirm, quiz, build, next, status, or abandon |
-| `capstone_build_status` | Check capstone build progress — current step, coverage, quiz performance |
+| Tool                    | Description                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------- |
+| `start_capstone_build`  | Start a guided capstone build — shape your project and validate criteria coverage |
+| `capstone_build_step`   | Drive the capstone build: confirm, quiz, build, next, status, or abandon          |
+| `capstone_build_status` | Check capstone build progress — current step, coverage, quiz performance          |
 
 ### Reference & Admin
 
-| Tool | Description |
-|------|-------------|
-| `scaffold_project` | Access reference projects for hands-on practice with real code |
-| `reset_progress` | Start over — requires explicit confirmation to prevent accidents |
+| Tool               | Description                                                      |
+| ------------------ | ---------------------------------------------------------------- |
+| `scaffold_project` | Access reference projects for hands-on practice with real code   |
+| `reset_progress`   | Start over — requires explicit confirmation to prevent accidents |
 
 The server also registers **8 interactive prompts** and **3 resource types** (concept handouts, reference projects, exam overview).
 
@@ -731,20 +738,20 @@ The server also registers **8 interactive prompts** and **3 resource types** (co
 
 ### Core Components
 
-| Component | Technology | Purpose |
-|-----------|-----------|---------|
-| MCP Server | `@modelcontextprotocol/sdk` v1 | Registers tools, prompts, resources over stdio |
-| Grading Engine | Pure TypeScript functions | Deterministic answer verification |
-| Spaced Repetition | SM-2 algorithm | Optimal review scheduling |
-| Question Selector | Three-priority algorithm | Overdue reviews > weak areas > new material |
-| Follow-Up System | State-driven tool chain | Interactive post-answer detours |
-| Capstone Build Engine | 18-step interleaved builder | Guided learn-build-explain flow with LLM validation |
-| Dashboard Server | Node.js HTTP + HTML | Glassmorphism visual dashboard via Claude Preview |
-| Question Bank | 390 bundled JSON questions | Scenario-based, verified against docs |
-| Concept Handouts | 30 bundled markdown files | Structured study materials per task statement |
-| Reference Projects | 6 bundled TypeScript projects | Runnable code demonstrating each domain |
-| PDF Generator | Puppeteer + Marked | Branded handout PDFs for offline study |
-| Progress Store | `better-sqlite3` (WAL mode) | Persistent mastery, answers, schedules |
+| Component             | Technology                     | Purpose                                             |
+| --------------------- | ------------------------------ | --------------------------------------------------- |
+| MCP Server            | `@modelcontextprotocol/sdk` v1 | Registers tools, prompts, resources over stdio      |
+| Grading Engine        | Pure TypeScript functions      | Deterministic answer verification                   |
+| Spaced Repetition     | SM-2 algorithm                 | Optimal review scheduling                           |
+| Question Selector     | Three-priority algorithm       | Overdue reviews > weak areas > new material         |
+| Follow-Up System      | State-driven tool chain        | Interactive post-answer detours                     |
+| Capstone Build Engine | 18-step interleaved builder    | Guided learn-build-explain flow with LLM validation |
+| Dashboard Server      | Node.js HTTP + HTML            | Glassmorphism visual dashboard via Claude Preview   |
+| Question Bank         | 390 bundled JSON questions     | Scenario-based, verified against docs               |
+| Concept Handouts      | 30 bundled markdown files      | Structured study materials per task statement       |
+| Reference Projects    | 6 bundled TypeScript projects  | Runnable code demonstrating each domain             |
+| PDF Generator         | Puppeteer + Marked             | Branded handout PDFs for offline study              |
+| Progress Store        | `better-sqlite3` (WAL mode)    | Persistent mastery, answers, schedules              |
 
 ### Interactive UI Architecture
 
@@ -770,17 +777,17 @@ This server enforces honest grading at the protocol level — not just in prompt
 
 ## Question Bank Details
 
-| Metric | Value |
-|--------|-------|
-| Total questions | 390 |
-| Domains covered | 5 |
-| Task statements covered | 30 |
-| Questions per task statement | 13 |
-| Difficulty distribution | ~4 easy, 5 medium, ~4 hard per task |
-| Answer key balance | Distributed across A/B/C/D |
-| Question format | Scenario-based multiple choice |
-| Each question includes | Scenario, question, 4 options, explanation, why-wrong-map, references |
-| Source material | Anthropic official documentation |
+| Metric                       | Value                                                                 |
+| ---------------------------- | --------------------------------------------------------------------- |
+| Total questions              | 390                                                                   |
+| Domains covered              | 5                                                                     |
+| Task statements covered      | 30                                                                    |
+| Questions per task statement | 13                                                                    |
+| Difficulty distribution      | ~4 easy, 5 medium, ~4 hard per task                                   |
+| Answer key balance           | Distributed across A/B/C/D                                            |
+| Question format              | Scenario-based multiple choice                                        |
+| Each question includes       | Scenario, question, 4 options, explanation, why-wrong-map, references |
+| Source material              | Anthropic official documentation                                      |
 
 <br />
 
