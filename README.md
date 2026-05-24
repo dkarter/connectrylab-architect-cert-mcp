@@ -157,6 +157,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "run",
         "--rm",
         "-i",
+        "--pull=always",
         "-p", "3847:3847",
         "-e", "DASHBOARD_PORT=3847",
         "-e", "DASHBOARD_BIND_HOST=0.0.0.0",
