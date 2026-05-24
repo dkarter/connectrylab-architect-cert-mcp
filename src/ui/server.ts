@@ -288,9 +288,12 @@ export function startDashboardServer(
     }
   });
 
+  const bindHost = process.env['DASHBOARD_BIND_HOST'] ?? '127.0.0.1';
+  const bindPort = parseInt(process.env['DASHBOARD_PORT'] ?? '0', 10);
+
   return new Promise((resolve, reject) => {
     server.on('error', reject);
-    server.listen(0, '127.0.0.1', () => {
+    server.listen(bindPort, bindHost, () => {
       const addr = server.address();
       if (!addr || typeof addr === 'string') {
         reject(new Error('Failed to get server address'));

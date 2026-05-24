@@ -157,6 +157,9 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "run",
         "--rm",
         "-i",
+        "-p", "3847:3847",
+        "-e", "DASHBOARD_PORT=3847",
+        "-e", "DASHBOARD_BIND_HOST=0.0.0.0",
         "-v",
         "/Users/<YOUR_USERNAME>/.local/share/connectry-architect:/root/.connectry-architect",
         "ghcr.io/dkarter/connectrylab-architect-cert-mcp:latest"
@@ -166,7 +169,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 }
 ```
 
-This runs the server in an isolated container with no npm dependencies on your machine. Your progress is persisted via the volume mount at `~/.local/share/connectry-architect`.
+This runs the server in an isolated container with no npm dependencies on your machine. Your progress is persisted via the volume mount at `~/.local/share/connectry-architect`. Port 3847 is published so the visual dashboard is accessible at `http://127.0.0.1:3847/dashboard` when Claude opens it in Preview.
 
 Restart Claude Desktop. You'll see the MCP tools icon appear in the chat input.
 
