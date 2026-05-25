@@ -146,6 +146,8 @@ The explanation must be readable in the main chat — NOT hidden inside the AskU
             lines.push(`B) ${nextQuestion.options.B}`);
             lines.push(`C) ${nextQuestion.options.C}`);
             lines.push(`D) ${nextQuestion.options.D}`);
+            lines.push('');
+            lines.push(`[Submit your answer using submit_exam_answer with examId: ${examId} and questionId: "${nextQuestionId}"]`);
 
             const selected = await elicitSingleSelect(server, 'Select your answer:', 'answer', [
               { value: 'A', title: `A) ${nextQuestion.options.A}` },
