@@ -11,6 +11,7 @@ import { registerGetWeakAreas } from './get-weak-areas.js';
 import { registerGetStudyPlan } from './get-study-plan.js';
 import { registerScaffoldProject } from './scaffold-project.js';
 import { registerResetProgress } from './reset-progress.js';
+import { registerAbandonExam } from './abandon-exam.js';
 import { registerStartPracticeExam } from './start-practice-exam.js';
 import { registerSubmitExamAnswer } from './submit-exam-answer.js';
 import { registerGetExamHistory } from './get-exam-history.js';
@@ -31,6 +32,7 @@ export function registerTools(server: McpServer, db: Database.Database, userConf
   registerGetStudyPlan(server, db, userConfig);
   registerScaffoldProject(server, db, userConfig);
   registerResetProgress(server, db, userConfig);
+  registerAbandonExam(server, db, userConfig);
   registerStartPracticeExam(server, db, userConfig);
   registerSubmitExamAnswer(server, db, userConfig);
   registerGetExamHistory(server, db, userConfig);

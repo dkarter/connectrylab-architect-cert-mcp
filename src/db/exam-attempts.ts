@@ -73,6 +73,13 @@ export function completeExam(db: Database.Database, examId: number): ExamAttempt
   return getExamById(db, examId);
 }
 
+export function abandonExam(db: Database.Database, examId: number): boolean {
+  const result = db.prepare(
+    'UPDATE exam_attempts SET completedAt = CURRENT_TIMESTAMP WHERE id = ? AND completedAt IS NULL'
+  ).run(examId);
+  return result.changes > 0;
+}
+
 export function getExamHistory(db: Database.Database, userId: string): readonly ExamAttempt[] {
   const rows = db.prepare(
     'SELECT * FROM exam_attempts WHERE userId = ? AND completedAt IS NOT NULL ORDER BY completedAt DESC'
